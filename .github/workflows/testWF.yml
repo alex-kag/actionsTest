@@ -28,6 +28,7 @@ jobs:
           username: deployuser
           private_key: ${{ secrets.PRIVATE_KEY }}
           scp_source: pom.xml
-          scp_target: /opt/analyticsbackend
+          scp_target: /opt/analyticsbackend/
           after_script: |
             ls -la /opt/analyticsbackend
+
