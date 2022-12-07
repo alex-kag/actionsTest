@@ -31,4 +31,3 @@ jobs:
           scp_target: /opt/analyticsbackend/
           after_script: |
             ls -la /opt/analyticsbackend
-
