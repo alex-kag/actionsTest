@@ -38,7 +38,7 @@ jobs:
           scp_source: target/demo-0.0.1-SNAPSHOT.jar
           scp_target: /opt/actiontest
           after_script: |
-            ls -la /opt/actiontest/      
+            sudo systemctl start analytic77
   
 
     # Optional: Uploads the full dependency graph to GitHub to improve the quality of Dependabot alerts this repository can receive
