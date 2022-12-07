@@ -11,8 +11,6 @@ name: Java CI with Maven
 on:
   push:
     branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
 
 jobs:
   build:
@@ -29,6 +27,19 @@ jobs:
         cache: maven
     - name: Build with Maven
       run: mvn -B package --file pom.xml
+      
+    - name: Deploy to remote server
+      uses: kostya-ten/ssh-server-deploy@v4
+      with:
+          host: ${{ secrets.HOST }}
+          port: 22
+          username: ${{ secrets.USERNAME }}
+          private_key: ${{ secrets.PRIVATE_KEY }}
+          scp_source: target/demo-0.0.1-SNAPSHOT.jar
+          scp_target: /opt/actiontest
+          after_script: |
+            ls -la /opt/actiontest/      
+  
 
     # Optional: Uploads the full dependency graph to GitHub to improve the quality of Dependabot alerts this repository can receive
     #- name: Update dependency graph
